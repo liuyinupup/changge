@@ -29,6 +29,7 @@ class PhotosController extends Controller
      */
     public function create(Photo $photo)
     {
+        $this->authorize('content_management',\Auth::user());
         return view('photos.edit', compact('photo'));
     }
 
@@ -40,6 +41,7 @@ class PhotosController extends Controller
      */
     public function store(Request $request, ImageUploadHandler $uploader, Photo $photo)
     {
+        $this->authorize('content_management',\Auth::user());
 
         $this->validate($request, [
             'title' => 'required',
@@ -79,6 +81,7 @@ class PhotosController extends Controller
      */
     public function edit(Photo $photo)
     {
+        $this->authorize('content_management',\Auth::user());
         return view('photos.edit', compact('photo'));
     }
 
@@ -91,6 +94,7 @@ class PhotosController extends Controller
      */
     public function update(Request $request, ImageUploadHandler $uploader, Photo $photo)
     {
+        $this->authorize('content_management',\Auth::user());
 
         $data = $request->all();
 

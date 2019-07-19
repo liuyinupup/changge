@@ -1,9 +1,7 @@
 <footer class="footer">
-  <div class="container">
-    <p class="float-left">
-      由 刘银 设计和编码 
+  <div class="container" style="text-align: center">
+    <p >
+      粤ICP备19070133号-1 | <a href="{{ route('articles.show',1) }}">关于我</a>
     </p>
-
-    <p class="float-right"><a href="mailto:1304609091@qq.com">联系我</a></p>
   </div>
 </footer>

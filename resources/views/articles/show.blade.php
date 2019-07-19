@@ -7,6 +7,8 @@
             <textarea style="display:none;">{{$article->content}}</textarea>
         </div>
     </div>
+    @auth
+    @if (\Auth::user()->id===1||\Auth::user()->is_admin)
     <div class="col-1">
         <div class="btn-group-vertical" style="background:white;position:fixed;">
             <a href="{{ route('articles.edit', $article) }}" class="btn active">
@@ -15,13 +17,15 @@
             <form action="{{route('articles.destroy',$article->id)}}" method="POST">
                 {{ csrf_field() }}
                 {{method_field('DELETE')}}
-                <button type="submit" class="btn btn-link nav-del active" >
+                <button type="submit" class="btn btn-link nav-del active">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </form>
         </div>
 
     </div>
+    @endif
+    @endauth
 
 </div>
 

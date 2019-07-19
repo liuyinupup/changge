@@ -25,6 +25,7 @@ class ArticlesController extends Controller
      */
     public function create(Article $article)
     {
+        $this->authorize('content_management',\Auth::user());
         return view('articles.edit',compact('article'));
     }
 
@@ -36,6 +37,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('content_management',\Auth::user());
         
         $this->validate($request, [
             'title' => 'required',
@@ -70,6 +72,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
+        $this->authorize('content_management',\Auth::user());
         return view('articles.edit', compact('article'));
     }
 
@@ -82,6 +85,7 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        $this->authorize('content_management',\Auth::user());
         $data = $request->all();
         
         

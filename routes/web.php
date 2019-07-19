@@ -25,3 +25,5 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 Route::resource('navs','NavsController');
 Route::resource('photos','PhotosController');
 Route::resource('articles','ArticlesController');
+
+Route::resource('users','UsersController');

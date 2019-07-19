@@ -12,11 +12,6 @@
 </script>
 @endsection
 @section('content')
-@guest
-<h1>请登录，使用导航功能</h1>
-@else
-
-
 <form action="{{route('navs.store')}}" method="POST">
     {{ csrf_field() }}
     <div class="form-row">
@@ -35,7 +30,7 @@
     </div>
 </form>
 
-
+@auth
 @if($navs->count() > 0)
 <div class="row">
     @foreach($navs as $nav)
@@ -43,7 +38,6 @@
     @endforeach
 </div>
 @else
-
 @endif
-@endguest
+@endauth
 @stop

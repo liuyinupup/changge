@@ -5,6 +5,8 @@
 @section('full_content')
 <div class="row">
     <div class="col-3">
+    @auth
+    @if (\Auth::user()->id===1||\Auth::user()->is_admin)
         <div class="btn-group-vertical" style="background:white;float:right">
             <a href="{{ route('photos.edit', $photo) }}" class="btn active">
                 <i class="fas fa-edit"></i>
@@ -17,6 +19,8 @@
                 </button>
             </form>
         </div>
+        @endif
+        @endauth
         <div class="container" style="position:absolute;bottom:0;">
             <h2>{{$photo->title}}</h2>
             <p>{{$photo->des}}</p>
