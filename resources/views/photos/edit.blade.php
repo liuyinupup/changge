@@ -11,7 +11,7 @@
                     @if($photo->id)
                     编辑图片
                     @else
-                    新建图片
+                    添加图片
                     @endif
                 </h4>
             </div>
@@ -21,12 +21,11 @@
                 <form action="{{ route('photos.update', $photo->id) }}" method="POST" accept-charset="UTF-8"
                     enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
-                    @else
-                    <form action="{{ route('photos.store') }}" method="POST" accept-charset="UTF-8"
-                        enctype="multipart/form-data">
-                        @endif
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                @else
+                <form action="{{ route('photos.store') }}" method="POST" accept-charset="UTF-8"
+                    enctype="multipart/form-data">
+                @endif
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="title-field">标题</label>
                             <input class="form-control" type="text" name="title" id="title-field"

@@ -16,6 +16,7 @@
                 <li class="nav-item "><a class="nav-link" href="{{route('photos.create')}}">添加图片</a></li>
                 <li class="nav-item "><a class="nav-link" href="{{route('articles.index')}}">文章</a></li>
                 <li class="nav-item "><a class="nav-link" href="{{route('articles.create')}}">添加文章</a></li>
+                <li class="nav-item "><a class="nav-link" href="{{route('users.index')}}">用户管理</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -28,7 +29,7 @@
 
                 <form action="{{ route('logout') }}" method="POST">
                     {{ csrf_field() }}
-                    {{ Auth::user()->name }}<button type="submit>" class="btn btn-link">退出</button>
+                    {{ Auth::user()->name }}<button type="submit>" class="btn btn-link" style="padding:0px 10px 0px 10px">退出</button>
                 </form>
                 @endguest
             </ul>

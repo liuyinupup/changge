@@ -70,7 +70,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -82,7 +82,13 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $data = $request->all();
+        
+        
+        $article->update($data);
+       
+       
+        return redirect()->route('articles.show', $article->id)->with('success', '文章更新成功！');
     }
 
     /**
@@ -93,6 +99,7 @@ class ArticlesController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->route('articles.index');
     }
 }

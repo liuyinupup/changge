@@ -18,12 +18,12 @@
 </head>
 
 <body>
-    <div id="app" class="{{ route_class() }}-page" >
+    <div id="app" class="{{ route_class() }}-page">
 
         @include('layouts._header')
         @yield('full_content')
 
-        <div class="container" style="margin-bottom:60px">
+        <div class="container">
 
             @include('shared._messages')
 
@@ -31,6 +31,8 @@
 
         </div>
 
+        <div style="height:40px">
+        </div>
         @include('layouts._footer')
     </div>
 

@@ -2,13 +2,15 @@
 @section('title', '文章')
 
 @section('content')
-<div class="row">
+<div class="list-group">
     @foreach ($articles as $article)
-    <div class="col-3" style="margin-bottom:15px">
-        <a href="{{ route('articles.show', $article) }}">
-            {{$article->title}}
-        </a>
-    </div>
+    
+    <a href="{{ route('articles.show', $article) }}" class="list-group-item list-group-item-action ">
+
+
+        {{$article->title}}
+    </a>
+
     @endforeach
 </div>
 @stop

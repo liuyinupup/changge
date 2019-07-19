@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PharData;
 use App\Handlers\ImageUploadHandler;
+
 class PhotosController extends Controller
 {
     /**
@@ -16,8 +17,8 @@ class PhotosController extends Controller
      */
     public function index()
     {
-         $photos = photo::orderBy('created_at', 'desc')->get();
-        
+        $photos = photo::orderBy('created_at', 'desc')->get();
+
         return view('photos.index', compact('photos'));
     }
 
@@ -28,7 +29,7 @@ class PhotosController extends Controller
      */
     public function create(Photo $photo)
     {
-        return view('photos.edit',compact('photo'));
+        return view('photos.edit', compact('photo'));
     }
 
     /**
@@ -37,24 +38,24 @@ class PhotosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,ImageUploadHandler $uploader,Photo $photo)
+    public function store(Request $request, ImageUploadHandler $uploader, Photo $photo)
     {
-       
+
         $this->validate($request, [
             'title' => 'required',
             'src' => 'required',
         ]);
         $data = $request->all();
         if ($request->src) {
-            $result = $uploader->save($request->src,'photos',$photo->id);
+            $result = $uploader->save($request->src, 'photos', 'c');
             if ($result) {
                 $data['src'] = $result['path'];
             }
         }
-        
+
         Photo::create($data);
-       
-       
+
+
         session()->flash('success', '图片添加成功');
         return redirect()->route('photos.index');
     }
@@ -78,7 +79,7 @@ class PhotosController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        return view('photos.edit', compact('photo'));
     }
 
     /**
@@ -88,10 +89,21 @@ class PhotosController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, ImageUploadHandler $uploader, Photo $photo)
     {
-        //
+
+        $data = $request->all();
+
+        if ($request->src) {
+            $result = $uploader->save($request->src, 'photos', $photo->id);
+            if ($result) {
+                $data['src'] = $result['path'];
+            }
+        }
+        $photo->update($data);
+        return redirect()->route('photos.show', $photo->id)->with('success', '图片更新成功！');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -101,6 +113,7 @@ class PhotosController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        $photo->delete();
+        return redirect()->route('photos.index');
     }
 }
