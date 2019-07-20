@@ -12,16 +12,18 @@
         aria-pressed="true">下一篇<i class="fas fa-arrow-right"></i></a>
 
 
+
 </div>
 
-<div class="btn-group-vertical" style="position:fixed ;right:60px;bottom:100px">
+<div style="position:fixed ;right:8px;bottom:200px">
     @if (Gate::allows('mang-content'))
 
-    <a href="{{ route('articles.edit', $article) }}" class="btn btn-success ">
-        <i class="fas fa-edit fa-2x"></i>
+    <a href="{{ route('articles.edit', $article) }}" class="text-secondary" >
+        <i class="fas fa-pen fa-2x"></i>
     </a>
-    <button type="submit" class="btn btn-danger " form="nameform">
-        <i class="fas fa-trash-alt fa-2x"></i>
+    <br/>
+    <button type="submit" form="nameform" class="btn btn-link text-secondary" style="padding:0">
+        <i class="fas fa-trash-restore fa-2x"></i>
     </button>
 
     <form action="{{route('articles.destroy',$article->id)}}" method="POST" id="nameform">
@@ -30,21 +32,22 @@
 
     </form>
     @endif
-    <a href="#page_top" class="btn btn-success ">
-        <i<i class="fas fa-chevron-circle-up fa-2x"></i>
+    <a href="#page_top" class="text-secondary">
+        <i<i class="fas fa-chevron-circle-up fa-2x "></i>
     </a>
-    <a href="#page_bottom" class="btn  btn-success  ">
+    <br />
+    <a href="#page_bottom" class="text-secondary">
         <i<i class="fas fa-chevron-circle-down fa-2x"></i>
     </a>
-    
-
-
 </div>
 
 
 
 
-</div>
+
+
+
+
 
 
 

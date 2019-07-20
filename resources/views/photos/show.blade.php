@@ -27,7 +27,7 @@
                              <i class="fas fa-edit"></i>
                          </a>
                          <button type="submit" class="btn btn-outline-danger" form="nameform">
-                             <i class="fas fa-trash-alt"></i>
+                             <i class="fas fa-trash-restore"></i>
                          </button>
                          <form action="{{route('photos.destroy',$photo->id)}}" method="POST" id="nameform">
                              {{ csrf_field() }}
@@ -41,7 +41,7 @@
                  </div>
              </div>
              <div class="col-xl-3 d-none d-xl-block ">
-                 <div class="container " style="position:absolute;bottom:0;">
+                 <div  style="position:absolute;bottom:0;padding-right:15px">
                      <h2>{{$photo->title}}</h2>
                      <p>{{$photo->des}}</p>
                      <address>{{$photo->author}} {{$photo->time}} {{$photo->location}}</address>
@@ -56,7 +56,7 @@
                              <i class="fas fa-edit"></i>
                          </a>
                          <button type="submit" class="btn btn-outline-danger" form="nameform">
-                             <i class="fas fa-trash-alt"></i>
+                             <i class="fas fa-trash-restore"></i>
                          </button>
                          <form action="{{route('photos.destroy',$photo->id)}}" method="POST" id="nameform">
                              {{ csrf_field() }}
