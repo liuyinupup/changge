@@ -122,6 +122,12 @@ class ArticlesController extends Controller
      */
     public function destroy(Article $article)
     {
+        if($article->id==1){
+            session()->flash('danger', '此文章不可删除！');
+        }
+        else{
+            session()->flash('success', '文章添加成功');
+        }
         $article->delete();
         return redirect()->route('articles.index');
     }
