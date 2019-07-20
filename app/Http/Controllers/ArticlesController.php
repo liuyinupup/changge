@@ -14,7 +14,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = article::orderBy('created_at', 'desc')->get();
+        $articles = article::orderBy('created_at', 'desc')->paginate(12);
         return view('articles.index', compact('articles'));
     }
 
@@ -61,7 +61,26 @@ class ArticlesController extends Controller
      */
     public function show(Article $article)
     {
-        return view('articles.show', compact('article'));
+         // 获取 上一篇 的 ID
+         $previous = Article::where('id', '<', $article->id)->max('id');
+         // 同理，获取 下一篇 的 ID
+         $next = Article::where('id', '>', $article->id)->min('id');
+         // 如果没有上一篇，则选最后一篇
+         if (!$previous) {
+             $previous = Article::max('id');
+         }
+          // 如果没有下一篇，则选第一篇
+         if (!$next) {
+             $next = Article::min('id');
+         }
+         if (!$previous) {
+             $previous = $article;
+         }
+         if (!$next) {
+             $next = $article;
+         }
+         
+        return view('articles.show', compact('article', 'previous', 'next'));
     }
 
     /**

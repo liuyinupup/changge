@@ -1,3 +1,4 @@
+<a name="page_top"></a>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
     <div class="container">
         <!-- Branding Image -->
@@ -14,16 +15,17 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item "><a class="nav-link" href="{{route('photos.index')}}">图片</a></li>
                 <li class="nav-item "><a class="nav-link" href="{{route('articles.index')}}">文章</a></li>
-                @auth
-                @if(\Auth::user()->id==1||\Auth::user()->is_admin)
+                @if (Gate::allows('mang-content')) 
+    
                    
                 <li class="nav-item "><a class="nav-link" href="{{route('photos.create')}}">添加图片</a></li>
                 <li class="nav-item "><a class="nav-link" href="{{route('articles.create')}}">添加文章</a></li>
-                @if(\Auth::user()->id==1)
+                @endif
+                @if (Gate::allows('mang-user')) 
+                
                 <li class="nav-item "><a class="nav-link" href="{{route('users.index')}}">用户管理</a></li>
                 @endif
-                @endif
-                @endauth
+                
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav navbar-right">

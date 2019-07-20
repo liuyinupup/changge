@@ -18,24 +18,24 @@
 </head>
 
 <body>
+    @yield('full_page')
     <div id="app" class="{{ route_class() }}-page">
 
         @include('layouts._header')
-        @yield('full_content')
-
-        <div class="container">
-
+         <div class="container">
             @include('shared._messages')
-
-            @yield('content')
-
         </div>
-
+        @yield('full_content')
+        <div class="container">            
+            @yield('content')
+        </div>
         <div style="height:40px">
         </div>
+        @yield('onfooter')
         @include('layouts._footer')
-    </div>
 
+    </div>
+    @yield('full_page_end')
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
     @yield('script')

@@ -14,7 +14,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = user::orderBy('created_at', 'desc')->get();
+        
+        $users = user::orderBy('created_at', 'desc')->paginate(12);
         return view('users.index', compact('users'));
     }
 
@@ -70,6 +71,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('user_management', $user);
        
         if($user->is_admin){
             $user->is_admin=false;

@@ -17,7 +17,7 @@ class PhotosController extends Controller
      */
     public function index()
     {
-        $photos = photo::orderBy('created_at', 'desc')->get();
+        $photos = photo::orderBy('created_at', 'desc')->paginate(12);
 
         return view('photos.index', compact('photos'));
     }
@@ -29,7 +29,7 @@ class PhotosController extends Controller
      */
     public function create(Photo $photo)
     {
-        $this->authorize('content_management',\Auth::user());
+        $this->authorize('content_management', \Auth::user());
         return view('photos.edit', compact('photo'));
     }
 
@@ -41,7 +41,7 @@ class PhotosController extends Controller
      */
     public function store(Request $request, ImageUploadHandler $uploader, Photo $photo)
     {
-        $this->authorize('content_management',\Auth::user());
+        $this->authorize('content_management', \Auth::user());
 
         $this->validate($request, [
             'title' => 'required',
@@ -70,7 +70,25 @@ class PhotosController extends Controller
      */
     public function show(Photo $photo)
     {
-        return view('photos.show', compact('photo'));
+        // 获取 上一篇 的 ID
+        $previous = Photo::where('id', '<', $photo->id)->max('id');
+        // 同理，获取 下一篇 的 ID
+        $next = Photo::where('id', '>', $photo->id)->min('id');
+        // 如果没有上一张，则选最后一张
+        if (!$previous) {
+            $previous = Photo::max('id');
+        }
+         // 如果没有下一张，则选第一张
+        if (!$next) {
+            $next = Photo::min('id');
+        }
+        if (!$previous) {
+            $previous = $photo;
+        }
+        if (!$next) {
+            $next = $photo;
+        }
+        return view('photos.show', compact('photo', 'previous', 'next'));
     }
 
     /**
@@ -81,7 +99,7 @@ class PhotosController extends Controller
      */
     public function edit(Photo $photo)
     {
-        $this->authorize('content_management',\Auth::user());
+        $this->authorize('content_management', \Auth::user());
         return view('photos.edit', compact('photo'));
     }
 
@@ -94,7 +112,7 @@ class PhotosController extends Controller
      */
     public function update(Request $request, ImageUploadHandler $uploader, Photo $photo)
     {
-        $this->authorize('content_management',\Auth::user());
+        $this->authorize('content_management', \Auth::user());
 
         $data = $request->all();
 

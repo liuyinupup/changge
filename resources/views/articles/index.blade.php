@@ -13,4 +13,7 @@
 
     @endforeach
 </div>
+<div class="mt-3">
+    {!! $articles->render() !!}
+</div>
 @stop

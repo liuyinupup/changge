@@ -16550,3 +16550,7 @@ body {
   padding: 3px;
 }
 
+.show_photo .container {
+  max-width: 4800px;
+}
+

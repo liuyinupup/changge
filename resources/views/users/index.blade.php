@@ -59,4 +59,7 @@
 
     </tbody>
 </table>
+<div class="mt-3">
+    {!! $users->render() !!}
+</div>
 @stop

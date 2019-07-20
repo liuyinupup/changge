@@ -1,31 +1,48 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
-    <div class="col-11">
-        <div id="test-markdown-view">
-            <!-- Server-side output Markdown text -->
-            <textarea style="display:none;">{{$article->content}}</textarea>
-        </div>
-    </div>
-    @auth
-    @if (\Auth::user()->id===1||\Auth::user()->is_admin)
-    <div class="col-1">
-        <div class="btn-group-vertical" style="background:white;position:fixed;">
-            <a href="{{ route('articles.edit', $article) }}" class="btn active">
-                <i class="fas fa-edit"></i>
-            </a>
-            <form action="{{route('articles.destroy',$article->id)}}" method="POST">
-                {{ csrf_field() }}
-                {{method_field('DELETE')}}
-                <button type="submit" class="btn btn-link nav-del active">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            </form>
-        </div>
 
-    </div>
+<div id="test-markdown-view">
+    <!-- Server-side output Markdown text -->
+    <textarea style="display:none;">{{$article->content}}</textarea>
+</div>
+<div style="margin-top:15px">
+    <a href="{{ route('articles.show', $previous) }}" class="btn btn-outline-secondary pull-left " role="button"
+        aria-pressed="true"><i class="fas fa-arrow-left"></i>上一篇</a>
+    <a href="{{ route('articles.show', $next) }}" class="btn btn-outline-secondary pull-right" role="button"
+        aria-pressed="true">下一篇<i class="fas fa-arrow-right"></i></a>
+
+
+</div>
+
+<div class="btn-group-vertical" style="position:fixed ;right:60px;bottom:100px">
+    @if (Gate::allows('mang-content'))
+
+    <a href="{{ route('articles.edit', $article) }}" class="btn btn-success ">
+        <i class="fas fa-edit fa-2x"></i>
+    </a>
+    <button type="submit" class="btn btn-danger " form="nameform">
+        <i class="fas fa-trash-alt fa-2x"></i>
+    </button>
+
+    <form action="{{route('articles.destroy',$article->id)}}" method="POST" id="nameform">
+        {{ csrf_field() }}
+        {{method_field('DELETE')}}
+
+    </form>
     @endif
-    @endauth
+    <a href="#page_top" class="btn btn-success ">
+        <i<i class="fas fa-chevron-circle-up fa-2x"></i>
+    </a>
+    <a href="#page_bottom" class="btn  btn-success  ">
+        <i<i class="fas fa-chevron-circle-down fa-2x"></i>
+    </a>
+    
+
+
+</div>
+
+
+
 
 </div>
 
