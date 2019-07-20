@@ -31,7 +31,7 @@
                 <form action="{{route('users.destroy',$user->id)}}" method="POST">
                     {{ csrf_field() }}
                     {{method_field('DELETE')}}
-                    <button type="submit" class="btn btn-link nav-del ">
+                    <button type="submit" class="btn btn-link " style="padding:0">
                         删除用户
                     </button>
                 </form>
@@ -43,7 +43,7 @@
                     {{ method_field('PATCH') }}
                     {{ csrf_field() }}
 
-                    <button type="submit" class="btn btn-link nav-del ">
+                    <button type="submit" class="btn btn-link " style="padding:0">
                         @if($user->is_admin)
                         取消管理员
                         @else
