@@ -15,7 +15,7 @@
                  <div class=" d-xl-none" style="margin-top:30px">
                      <h2>{{$photo->title}}</h2>
                      <p>{{$photo->des}}</p>
-                     <address>{{$photo->author}} {{$photo->time}} {{$photo->location}}</address>
+                     <address>{{$photo->author}} {{$photo->time}} <i class="fas fa-map-marker-alt"></i>{{$photo->location}}</address>
                      <div>
                          <a href="{{ route('photos.show', $previous) }}" class="btn btn-outline-secondary  "
                              role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i> 上一张</a>
@@ -44,7 +44,7 @@
                  <div  style="position:absolute;bottom:0;padding-right:15px">
                      <h2>{{$photo->title}}</h2>
                      <p>{{$photo->des}}</p>
-                     <address>{{$photo->author}} {{$photo->time}} {{$photo->location}}</address>
+                     <address>{{$photo->author}} {{$photo->time}} <i class="fas fa-map-marker-alt"></i>{{$photo->location}}</address>
                      <div>
                          <a href="{{ route('photos.show', $previous) }}" class="btn btn-outline-secondary  "
                              role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i> 上一张</a>

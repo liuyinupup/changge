@@ -1,29 +1,50 @@
 @extends('layouts.app')
 @section('content')
 
-<div id="test-markdown-view">
-    <!-- Server-side output Markdown text -->
-    <textarea style="display:none;">{{$article->content}}</textarea>
+<div class="row">
+
+    <div class="col-lg-3">
+        <aside class="sticky-top" style="margin-bottom:15px">
+            <div class="card">
+                <div class="card-header">
+                    目录
+                </div>
+                <ul class="list-group list-group-flush">
+                    <div id="category">
+                    </div>
+                </ul>
+            </div>
+        </aside>
+
+
+    </div>
+
+    <div class="col-lg-9">
+        <div id="test-markdown-view">
+            <!-- Server-side output Markdown text -->
+            <textarea style="display:none;">{{$article->content}}</textarea>
+        </div>
+        <div style="margin-top:15px">
+            <a href="{{ route('articles.show', $previous) }}" class="btn btn-outline-secondary pull-left " role="button"
+                aria-pressed="true"><i class="fas fa-arrow-left"></i>上一篇</a>
+            <a href="{{ route('articles.show', $next) }}" class="btn btn-outline-secondary pull-right" role="button"
+                aria-pressed="true">下一篇<i class="fas fa-arrow-right"></i></a>
+        </div>
+
+
+    </div>
 </div>
-<div style="margin-top:15px">
-    <a href="{{ route('articles.show', $previous) }}" class="btn btn-outline-secondary pull-left " role="button"
-        aria-pressed="true"><i class="fas fa-arrow-left"></i>上一篇</a>
-    <a href="{{ route('articles.show', $next) }}" class="btn btn-outline-secondary pull-right" role="button"
-        aria-pressed="true">下一篇<i class="fas fa-arrow-right"></i></a>
 
-
-
-</div>
 
 <div style="position:fixed ;right:8px;bottom:200px">
     @if (Gate::allows('mang-content'))
 
-    <a href="{{ route('articles.edit', $article) }}" class="text-secondary" >
-        <i class="fas fa-pen fa-2x"></i>
+    <a href="{{ route('articles.edit', $article) }}">
+        <i class="fas fa-pen fa-2x" style="color:#00b5ad"></i>
     </a>
-    <br/>
-    <button type="submit" form="nameform" class="btn btn-link text-secondary" style="padding:0">
-        <i class="fas fa-trash-restore fa-2x"></i>
+    <br />
+    <button type="submit" form="nameform" class="btn btn-link " style="padding:0">
+        <i class="fas fa-trash-restore fa-2x" style="color:#00b5ad"></i>
     </button>
 
     <form action="{{route('articles.destroy',$article->id)}}" method="POST" id="nameform">
@@ -32,32 +53,26 @@
 
     </form>
     @endif
-    <a href="#page_top" class="text-secondary">
-        <i<i class="fas fa-chevron-circle-up fa-2x "></i>
+    <a href="#page_top">
+        <i<i class="fas fa-chevron-circle-up fa-2x " style="color:#00b5ad"></i>
     </a>
     <br />
-    <a href="#page_bottom" class="text-secondary">
-        <i<i class="fas fa-chevron-circle-down fa-2x"></i>
+    <a href="#page_bottom">
+        <i<i class="fas fa-chevron-circle-down fa-2x" style="color:#00b5ad"></i>
     </a>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 @stop
 
 @section('style')
 <link rel="stylesheet" href="{{asset('editormd/css/editormd.preview.css')}}" />
+<style>
+    .markdown-toc {}
+
+</style>
 @stop
 
 @section('script')
+
 <script src="{{asset('editormd/editormd.js')}}"></script>
 <script src="{{asset('editormd/lib/marked.min.js')}}"></script>
 <script src="{{asset('editormd/lib/prettify.min.js')}}"></script>
@@ -68,6 +83,21 @@
             htmlDecode: true, // Enable / disable HTML tag encode.
             htmlDecode: "style,script,iframe", // Note: If enabled, you should filter some dangerous HTML tags for website security.
             tex: true,
+            tocm: true,
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("h2,h3").each(function (i, item) {
+            var tag = $(item).get(0).localName;
+            $(item).attr("id", "wow" + i);
+            $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(this).text() +
+                '</a></br>');
+            $(".newh1").css("margin-left", 0);
+            $(".newh2").css("margin-left", 20);
+            $(".newh3").css("margin-left", 40);
         });
     });
 

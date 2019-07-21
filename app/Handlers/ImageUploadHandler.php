@@ -24,7 +24,7 @@ class ImageUploadHandler
         // 拼接文件名，加前缀是为了增加辨析度，前缀可以是相关数据模型的 ID
         // 值如：1_1493521050_7BVc9v9ujP.png
         $filename = $file_prefix . '_' . time() . '_' . str_random(10) . '.' . $extension;
-        $thumb_filename ='thumb_'. $file_prefix . '_' . time() . '_' . str_random(10) . '.' . $extension;
+        $thumb_filename = 'thumb_' . $file_prefix . '_' . time() . '_' . str_random(10) . '.' . $extension;
 
         // 如果上传的不是图片将终止操作
         if (!in_array($extension, $this->allowed_ext)) {
@@ -33,7 +33,7 @@ class ImageUploadHandler
 
         // 将图片移动到我们的目标存储路径中
         $file->move($upload_path, $filename);
-        $thumb=Image::make($upload_path . '/' . $filename)->resize(450, null, function ($constraint) {
+        $thumb = Image::make($upload_path . '/' . $filename)->resize(450, null, function ($constraint) {
 
             // 设定宽度是 $max_width，高度等比例双方缩放
             $constraint->aspectRatio();
@@ -52,7 +52,7 @@ class ImageUploadHandler
 
         return [
             'path' => config('app.url') . "/$folder_name/$filename",
-            'thumb_path'=>config('app.url') . "/$folder_name/$thumb_filename"
+            'thumb_path' => config('app.url') . "/$folder_name/$thumb_filename"
         ];
     }
 
