@@ -127,8 +127,9 @@ class ArticlesController extends Controller
         }
         else{
             session()->flash('success', '文章添加成功');
+            $article->delete();
         }
-        $article->delete();
+        
         return redirect()->route('articles.index');
     }
 }

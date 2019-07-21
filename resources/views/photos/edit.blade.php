@@ -54,6 +54,7 @@
                         <div class="form-group mb-4">
                             <label for="" class="src-label">图片</label>
                             <input type="file" name="src" class="form-control-file">
+                           
 
                             @if($photo->src)
                             <br>

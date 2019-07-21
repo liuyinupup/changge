@@ -16,6 +16,7 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('src');
+            $table->text('thumbnail')->nullable();
             $table->text('title');
             $table->text('des')->nullable();
             $table->text('author')->nullable();

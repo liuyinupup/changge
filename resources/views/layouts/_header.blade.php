@@ -5,27 +5,28 @@
         <a class="navbar-brand " href="{{ url('/') }}">
             ChangGE
         </a>
+        <a class="nav-link text-secondary " href="{{route('photos.index')}}">图片</a>
+        <a class="nav-link text-secondary" href="{{route('articles.index')}}">文章</a>
+
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item "><a class="nav-link" href="{{route('photos.index')}}">图片</a></li>
-                <li class="nav-item "><a class="nav-link" href="{{route('articles.index')}}">文章</a></li>
-                @if (Gate::allows('mang-content')) 
-    
-                   
+                @if (Gate::allows('mang-content'))
                 <li class="nav-item "><a class="nav-link" href="{{route('photos.create')}}">添加图片</a></li>
                 <li class="nav-item "><a class="nav-link" href="{{route('articles.create')}}">添加文章</a></li>
                 @endif
-                @if (Gate::allows('mang-user')) 
-                
+                @if (Gate::allows('mang-user'))
+
                 <li class="nav-item "><a class="nav-link" href="{{route('users.index')}}">用户管理</a></li>
                 @endif
-                
+
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav navbar-right">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PharData;
 use App\Handlers\ImageUploadHandler;
+use Image;
 
 class PhotosController extends Controller
 {
@@ -49,15 +50,13 @@ class PhotosController extends Controller
         ]);
         $data = $request->all();
         if ($request->src) {
-            $result = $uploader->save($request->src, 'photos', 'c');
-            if ($result) {
-                $data['src'] = $result['path'];
+            $result_l = $uploader->save($request->src, 'photos', 'l', 1920);
+            if ($result_l) {
+                $data['src'] = $result_l['path'];
+                $data['thumbnail']=$result_l['thumb_path'];
             }
         }
-
         Photo::create($data);
-
-
         session()->flash('success', '图片添加成功');
         return redirect()->route('photos.index');
     }
@@ -78,7 +77,7 @@ class PhotosController extends Controller
         if (!$previous) {
             $previous = Photo::max('id');
         }
-         // 如果没有下一张，则选第一张
+        // 如果没有下一张，则选第一张
         if (!$next) {
             $next = Photo::min('id');
         }
@@ -117,9 +116,10 @@ class PhotosController extends Controller
         $data = $request->all();
 
         if ($request->src) {
-            $result = $uploader->save($request->src, 'photos', $photo->id);
-            if ($result) {
-                $data['src'] = $result['path'];
+            $result_l = $uploader->save($request->src, 'photos', 'l', 1920);
+            if ($result_l) {
+                $data['src'] = $result_l['path'];
+                $data['thumbnail']=$result_l['thumb_path'];
             }
         }
         $photo->update($data);
