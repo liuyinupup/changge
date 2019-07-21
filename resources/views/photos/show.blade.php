@@ -15,7 +15,7 @@
                      <h2>{{$photo->title}}</h2>
                      <p>{{$photo->des}}</p>
                      <p><small>{{$photo->author}} {{$photo->time}} <i class="fas fa-map-marker-alt"></i>{{$photo->location}}</small></p>
-                     <br/>
+                     
                      <div>
                          <a href="{{ route('photos.show', $previous) }}" class="btn btn-outline-secondary  "
                              role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i> 上一张</a>
