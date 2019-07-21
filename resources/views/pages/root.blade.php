@@ -15,9 +15,21 @@
 @endif
 
 @if($article)
-<div id="test-markdown-view">
-    <!-- Server-side output Markdown text -->
-    <textarea style="display:none;">{{$article->content}}</textarea>
+<div class="row">
+
+
+    <div class="col-lg-9">
+        <div id="test-markdown-view" class="sm_shadow">
+            <!-- Server-side output Markdown text -->
+            <textarea style="display:none;">{{$article->content}}</textarea>
+        </div>
+    </div>
+    <div class="col-lg-3 d-none d-lg-block">
+        <aside class="sticky-top sm_shadow">
+            <div id="category" class="list-group">
+            </div>
+        </aside>
+    </div>
 </div>
 @endif
 
@@ -48,7 +60,23 @@
             htmlDecode: true, // Enable / disable HTML tag encode.
             htmlDecode: "style,script,iframe", // Note: If enabled, you should filter some dangerous HTML tags for website security.
             tex: true,
-            tocm:true,
+            tocm: true,
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("h2,h3").each(function (i, item) {
+            var tag = $(item).get(0).localName;
+            $(item).attr("id", "wow" + i);
+            $("#category").append('<a class="new' + tag +
+                ' list-group-item list-group-item-action " href="#wow' + i + '">' + $(this).text() +
+                '</a>');
+            $(".newh1").css("padding-left", 0);
+            $(".newh2").css("padding-left", 20);
+            $(".newh3").css("padding-left", 40);
         });
     });
 

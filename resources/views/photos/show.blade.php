@@ -3,7 +3,6 @@
  @section('script')
  <script>
      $("#show_photo").css("max-height", $(window).height() - 200);
-
  </script>
  @stop
  @section('full_content')
@@ -11,7 +10,7 @@
      <div class="container">
          <div class="row">
              <div class="col-xl-9">
-                 <div class="text-center"><img src="{{$photo->src}}" style="max-width:100%" id='show_photo'></div>
+                 <div class="text-center"><img src="{{$photo->src}}" style="max-width:100%" id='show_photo' class="sm_shadow"></div>
                  <div class=" d-xl-none" style="margin-top:30px">
                      <h2>{{$photo->title}}</h2>
                      <p>{{$photo->des}}</p>

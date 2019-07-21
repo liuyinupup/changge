@@ -1,26 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="row">
-
-    <div class="col-lg-3">
-        <aside class="sticky-top" style="margin-bottom:15px">
-            <div class="card">
-                <div class="card-header">
-                    目录
-                </div>
-                <ul class="list-group list-group-flush">
-                    <div id="category">
-                    </div>
-                </ul>
-            </div>
-        </aside>
-
-
-    </div>
+   
 
     <div class="col-lg-9">
-        <div id="test-markdown-view">
+        <div id="test-markdown-view" class="sm_shadow">
             <!-- Server-side output Markdown text -->
             <textarea style="display:none;">{{$article->content}}</textarea>
         </div>
@@ -30,8 +14,12 @@
             <a href="{{ route('articles.show', $next) }}" class="btn btn-outline-secondary pull-right" role="button"
                 aria-pressed="true">下一篇<i class="fas fa-arrow-right"></i></a>
         </div>
-
-
+    </div>
+     <div class="col-lg-3 d-none d-lg-block">
+        <aside class="sticky-top sm_shadow">
+            <div id="category" class="list-group">
+            </div>
+        </aside>
     </div>
 </div>
 
@@ -93,11 +81,12 @@
         $("h2,h3").each(function (i, item) {
             var tag = $(item).get(0).localName;
             $(item).attr("id", "wow" + i);
-            $("#category").append('<a class="new' + tag + '" href="#wow' + i + '">' + $(this).text() +
-                '</a></br>');
-            $(".newh1").css("margin-left", 0);
-            $(".newh2").css("margin-left", 20);
-            $(".newh3").css("margin-left", 40);
+            $("#category").append('<a class="new' + tag +
+                ' list-group-item list-group-item-action " href="#wow' + i + '">' + $(this).text() +
+                '</a>');
+            $(".newh1").css("padding-left", 0);
+            $(".newh2").css("padding-left", 20);
+            $(".newh3").css("padding-left", 40);
         });
     });
 
