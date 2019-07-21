@@ -22,6 +22,8 @@ class CreatePhotosTable extends Migration
             $table->text('author')->nullable();
             $table->text('location')->nullable();
             $table->text('time')->nullable();
+            $table->integer('album_id')->index()->nullable();
+            $table->boolean('is_excellent')->default(false);
             $table->timestamps();
         });
     }
