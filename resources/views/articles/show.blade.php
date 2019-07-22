@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="col-lg-3 d-none d-lg-block">
-        <aside class="sticky-top sm_shadow">
+        <aside class="sticky-top sm_shadow" style="z-index:-1;">
             <div id="category" class="list-group">
             </div>
         </aside>
