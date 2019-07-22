@@ -78,7 +78,7 @@
             $(".newh2").css("padding-left", 20);
             $(".newh3").css("padding-left", 40);
         });
-        $(".editormd-tex").attr("float", "none");
+        $(".editormd-tex").attr("overflow", "auto");
 
         $("img").attr("data-action", "zoom");
 
