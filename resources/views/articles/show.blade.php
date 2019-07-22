@@ -81,7 +81,7 @@
 
         $("img").attr("data-action", "zoom");
 
-        $(".editormd-tex").attr("overflow", "hidden");
+        $(".katex").attr("overflow", "hidden");
         $("h2").each(function (i, item) {
             var tag = $(item).get(0).localName;
             $(item).attr("id", "wow" + i);

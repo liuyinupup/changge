@@ -78,7 +78,7 @@
             $(".newh2").css("padding-left", 20);
             $(".newh3").css("padding-left", 40);
         });
-        $(".editormd-tex").attr("overflow", "hidden");
+        $(".katex").attr("overflow", "hidden");
 
         $("img").attr("data-action", "zoom");
 
