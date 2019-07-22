@@ -19,7 +19,7 @@
 
 
     <div class="col-lg-9">
-        <div id="test-markdown-view" class="sm_shadow">
+        <div id="test-markdown-view" class="sm_shadow" style="overflow: visible;">
             <!-- Server-side output Markdown text -->
             <textarea style="display:none;">{{$article->content}}</textarea>
         </div>
@@ -78,7 +78,9 @@
             $(".newh2").css("padding-left", 20);
             $(".newh3").css("padding-left", 40);
         });
+         $("img").attr( "data-action","zoom");
     });
+  
 
 </script>
 @stop

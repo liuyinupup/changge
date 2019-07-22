@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <div class="row">
-   
+
 
     <div class="col-lg-9">
-        <div id="test-markdown-view" class="sm_shadow">
+        <div id="test-markdown-view" class="sm_shadow" style="overflow: visible;">
             <!-- Server-side output Markdown text -->
             <textarea style="display:none;">{{$article->content}}</textarea>
         </div>
@@ -15,7 +15,7 @@
                 aria-pressed="true">下一篇<i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
-     <div class="col-lg-3 d-none d-lg-block">
+    <div class="col-lg-3 d-none d-lg-block">
         <aside class="sticky-top sm_shadow">
             <div id="category" class="list-group">
             </div>
@@ -78,6 +78,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $("img").attr("data-action", "zoom");
         $("h2").each(function (i, item) {
             var tag = $(item).get(0).localName;
             $(item).attr("id", "wow" + i);

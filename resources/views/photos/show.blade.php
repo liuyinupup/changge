@@ -3,6 +3,7 @@
  @section('script')
  <script>
      $("#show_photo").css("max-height", $(window).height() - 200);
+      $("img").attr( "data-action","zoom");
  </script>
  @stop
  @section('full_content')

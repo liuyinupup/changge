@@ -13,6 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('zoom/zoom.css') }}" rel="stylesheet">
     @yield('style')
 
 </head>
@@ -22,11 +23,11 @@
     <div id="app" class="{{ route_class() }}-page">
 
         @include('layouts._header')
-         <div class="container">
+        <div class="container">
             @include('shared._messages')
         </div>
         @yield('full_content')
-        <div class="container">            
+        <div class="container">
             @yield('content')
         </div>
         <div style="height:40px">
@@ -38,6 +39,7 @@
     @yield('full_page_end')
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset('zoom/zoom.js') }}"></script>
     @yield('script')
 </body>
 
