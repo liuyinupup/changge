@@ -3,7 +3,10 @@
  @section('script')
  <script>
      $("#show_photo").css("max-height", $(window).height() - 200);
-      $("img").attr( "data-action","zoom");
+     if ($(window).width() > 720) {
+         $("img").attr("data-action", "zoom");
+     }
+
  </script>
  @stop
  @section('full_content')
@@ -11,12 +14,14 @@
      <div class="container">
          <div class="row">
              <div class="col-xl-9">
-                 <div class="text-center"><img src="{{$photo->src}}" style="max-width:100%" id='show_photo' class="sm_shadow"></div>
+                 <div class="text-center"><img src="{{$photo->src}}" style="max-width:100%" id='show_photo'
+                         class="sm_shadow"></div>
                  <div class=" d-xl-none" style="margin-top:30px">
                      <h2>{{$photo->title}}</h2>
                      <p>{{$photo->des}}</p>
-                     <p><small>{{$photo->author}} {{$photo->time}} <i class="fas fa-map-marker-alt"></i>{{$photo->location}}</small></p>
-                     
+                     <p><small>{{$photo->author}} {{$photo->time}} <i
+                                 class="fas fa-map-marker-alt"></i>{{$photo->location}}</small></p>
+
                      <div>
                          <a href="{{ route('photos.show', $previous) }}" class="btn btn-outline-secondary  "
                              role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i> 上一张</a>
@@ -42,11 +47,12 @@
                  </div>
              </div>
              <div class="col-xl-3 d-none d-xl-block ">
-                 <div  style="position:absolute;bottom:0;padding-right:15px">
+                 <div style="position:absolute;bottom:0;padding-right:15px">
                      <h2>{{$photo->title}}</h2>
                      <p>{{$photo->des}}</p>
-                     <p><small>{{$photo->author}} {{$photo->time}} <i class="fas fa-map-marker-alt"></i>{{$photo->location}}</small></p>
-                     
+                     <p><small>{{$photo->author}} {{$photo->time}} <i
+                                 class="fas fa-map-marker-alt"></i>{{$photo->location}}</small></p>
+
                      <div>
                          <a href="{{ route('photos.show', $previous) }}" class="btn btn-outline-secondary  "
                              role="button" aria-pressed="true"><i class="fas fa-arrow-left"></i> 上一张</a>

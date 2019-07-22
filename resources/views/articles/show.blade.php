@@ -78,7 +78,9 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $("img").attr("data-action", "zoom");
+        if ($(window).width() > 720) {
+            $("img").attr("data-action", "zoom");
+        }
         $("h2").each(function (i, item) {
             var tag = $(item).get(0).localName;
             $(item).attr("id", "wow" + i);

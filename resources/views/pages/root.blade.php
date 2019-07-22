@@ -78,9 +78,11 @@
             $(".newh2").css("padding-left", 20);
             $(".newh3").css("padding-left", 40);
         });
-         $("img").attr( "data-action","zoom");
+        if ($(window).width() > 720) {
+            $("img").attr("data-action", "zoom");
+        }
+
     });
-  
 
 </script>
 @stop
