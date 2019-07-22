@@ -78,9 +78,10 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        if ($(window).width() > 720) {
-            $("img").attr("data-action", "zoom");
-        }
+
+        $("img").attr("data-action", "zoom");
+
+        $(".editormd-tex").attr("float", "none");
         $("h2").each(function (i, item) {
             var tag = $(item).get(0).localName;
             $(item).attr("id", "wow" + i);

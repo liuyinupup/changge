@@ -78,9 +78,10 @@
             $(".newh2").css("padding-left", 20);
             $(".newh3").css("padding-left", 40);
         });
-        if ($(window).width() > 720) {
-            $("img").attr("data-action", "zoom");
-        }
+        $(".editormd-tex").attr("float", "none");
+
+        $("img").attr("data-action", "zoom");
+
 
     });
 

@@ -3,9 +3,9 @@
  @section('script')
  <script>
      $("#show_photo").css("max-height", $(window).height() - 200);
-     if ($(window).width() > 720) {
+    
          $("img").attr("data-action", "zoom");
-     }
+   
 
  </script>
  @stop
