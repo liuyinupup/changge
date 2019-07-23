@@ -1,5 +1,5 @@
  @extends('layouts.app')
- @section('title', '图片-'.$photo->title)
+ @section('title', $photo->title)
  @section('script')
  <script>
      $("#show_photo").css("max-height", $(window).height() - 200);
