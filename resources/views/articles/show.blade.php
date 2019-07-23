@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '文章-'.$article->title)
 @section('content')
 <div class="row">
 
